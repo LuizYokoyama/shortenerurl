@@ -23,6 +23,10 @@ public class UrlService {
         while (urlMapRepository.existsById(shortId)){
             shortId = RandomStringUtils.randomAlphanumeric(SHORT_URL_LENGTH);
         }
+        if (!originalUrl.matches("https://.*")){
+            originalUrl = "https://" + originalUrl;
+        }
+
         UrlMap urlMap = new UrlMap(shortId, originalUrl);
         urlMapRepository.save(urlMap);
 
@@ -37,4 +41,5 @@ public class UrlService {
         UrlMap urlMap = optional.get();
         return urlMap.getRedirectUrl();
     }
+
 }

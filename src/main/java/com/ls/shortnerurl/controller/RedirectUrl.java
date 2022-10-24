@@ -19,7 +19,8 @@ public class RedirectUrl {
     @GetMapping("/{id}")
     @Operation(summary = "Redirect to the original URL")
     public ResponseEntity<String> getRedirect(@PathVariable String id){
-        return ResponseEntity.status(301).header("Location", urlService.goTo(id)).body("");
+        String redirectUrl = urlService.goTo(id);
+        return ResponseEntity.status(303).header("Location", redirectUrl).body("");
     }
 
     @PostMapping("/url_shortener")
