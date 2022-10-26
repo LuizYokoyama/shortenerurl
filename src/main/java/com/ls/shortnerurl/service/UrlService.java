@@ -19,10 +19,17 @@ public class UrlService {
     private UrlMapRepository urlMapRepository;
 
     public String newUrlShort(String originalUrl){
+
+        if (!originalUrl.matches("[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)")
+            || originalUrl.matches(".*\\.+|\\..*")){
+            throw new UrlNotFoundRuntimeException("Please, insert a valid URL.");
+        }
+
         String shortId = RandomStringUtils.randomAlphanumeric(SHORT_URL_LENGTH);
         while (urlMapRepository.existsById(shortId)){
             shortId = RandomStringUtils.randomAlphanumeric(SHORT_URL_LENGTH);
         }
+
         if (!originalUrl.matches("https://.*")){
             originalUrl = "https://" + originalUrl;
         }
