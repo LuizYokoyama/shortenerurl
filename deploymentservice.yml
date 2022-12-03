@@ -18,7 +18,7 @@ spec:
         - name: shortenerurl-server
           image: disconhecido/urlshortener-test:lastest
           ports:
-            - containerPort: 3000
+            - containerPort: 88
 
 
 ---
@@ -35,4 +35,3 @@ spec:
     - protocol: TCP
       port: 88
       targetPort: 88
-      nodePort: 88
