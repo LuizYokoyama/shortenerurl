@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11
-ENV APP_HOME=/usr/app/
-WORKDIR $APP_HOME
+FROM adoptopenjdk/openjdk17
 EXPOSE 88
+ADD target/shostenerurl.jar shortenerurl.jar
+ENTRYPOINT ["java", "-jar", "/shortenerurl.jar"]
