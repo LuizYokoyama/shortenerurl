@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11
+FROM openjdk:17-oracle
 EXPOSE 88
-
-ENTRYPOINT ["java", "-jar", "/shortenerurl.jar"]
+COPY build/libs/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "app.jar"]
